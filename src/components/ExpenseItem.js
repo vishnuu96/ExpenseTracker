@@ -1,13 +1,20 @@
-import React from 'react'
+// import React from "react";
+import './ExpenseItem.css';
 
 export default function ExpenseItem() {
-  return (
-    <div>
-     <h2> Expense Items</h2>
-     <p>Food Rs 10</p>
-     <p>Petrol Rs 100</p>
-     <p>Movies Rs 10</p>
-    </div>
-  )
-}
+ const expenseDate=new Date(2023, 2, 27);
+ const expenseTitle='car Insurance';
+ const exportAmount=3000;
+ const locationOfExpenditure="mumbai"
 
+  return (
+    <div className='expense-item'>
+     <div>{expenseDate.toISOString()}</div>
+     <div className='expense-item__description'>
+        <h2>{expenseTitle}</h2>
+        <h2>{locationOfExpenditure}</h2>
+        <div className='expense-item__price'>Rs {exportAmount}</div>
+     </div>
+    </div>
+  );
+}
