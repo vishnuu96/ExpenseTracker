@@ -8,7 +8,7 @@ const Expenses=(props)=> {
   return (
     <Cardd className='expenses'>
        {props.items.map((exp)=>{
-      return <ExpenseItem title={exp.title} amount={exp.amount} date={exp.date} location={exp.location} />
+      return <ExpenseItem id={exp.id}title={exp.title} amount={exp.amount} date={exp.date} location={exp.location} />
     
     })}
     </Cardd>
