@@ -4,7 +4,7 @@ import ExpenseDate from './ExpenseDate';
 import ExpenseDetails from './ExpenseDetails';
 import './ExpenseItem.css';
 
-export default function ExpenseItem(props) {
+const ExpenseItem = (props)=> {
 
   return (
     <Cardd className='expense-item'>
@@ -13,3 +13,4 @@ export default function ExpenseItem(props) {
     </Cardd>
   );
 }
+export default ExpenseItem

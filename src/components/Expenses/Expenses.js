@@ -4,7 +4,7 @@ import './Expenses.css';
 import Cardd from '../UI/Cardd';
 
 
-export default function Expenses(props) {
+const Expenses=(props)=> {
   return (
     <Cardd className='expenses'>
        {props.items.map((exp)=>{
@@ -14,3 +14,4 @@ export default function Expenses(props) {
     </Cardd>
   )
 }
+export default Expenses

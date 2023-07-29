@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function ExpenseDetails(props) {
+const ExpenseDetails = (props) =>{
   return (
     <>
      <div className='expense-item__description'>
@@ -12,3 +12,4 @@ export default function ExpenseDetails(props) {
     </>
   )
 }
+export default ExpenseDetails
