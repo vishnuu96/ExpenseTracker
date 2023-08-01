@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 import './ExpenseForm.css'
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
  
   const [enteredTitle, setEnteredTitle] = useState('')
   const [enteredAmount, setEnteredAmount] = useState('')
   const [enteredDate, setEnteredDate] = useState('')
-
+const [enteredLocation, setEnteredLocation] = useState('')
   // all states in one state
   // const [userInput, setUserInput] = useState({
   //   enteredTitle:'',
@@ -56,20 +56,28 @@ const ExpenseForm = () => {
   
     //   })
   }
+  const locationEventHandler=(event)=>{
+setEnteredLocation(event.target.value)
+  }
 
-  const addExpense=(e)=>{
-    e.preventDefault()
+  const addExpense=(event)=>{
+    event.preventDefault()
    const newExpense={
     title:enteredTitle,
     amount:enteredAmount,
-    date:enteredDate
+    date:new Date(enteredDate),
+    location:enteredLocation,
    }
-   console.log(newExpense)
+   props.onsavingExpense(newExpense)
+   setEnteredTitle('')
+   setEnteredAmount('')
+   setEnteredDate('')
+   setEnteredLocation('')
   }
 
   return (
     <div>
-      <form action={addExpense}>
+      <form onSubmit={addExpense}>
         <div className='expense-new__controls'>
           <div className='expense-new__control'>
             <label htmlFor="title">Expense title</label>
@@ -82,6 +90,10 @@ const ExpenseForm = () => {
           <div className='expense-new__control'>
             <label htmlFor="date">date</label>
             <input type="date" id="date" value={enteredDate} onChange={dateEventHandler} />
+          </div>
+          <div className='expense-new__control'>
+            <label htmlFor="location">location</label>
+            <input type="text" id="date" value={enteredLocation} onChange={locationEventHandler} />
           </div>
          
         </div>

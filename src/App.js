@@ -1,6 +1,7 @@
 
 
 
+import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
@@ -29,10 +30,17 @@ const App = () =>{
       location:'vijayawada',
     },
   ];
+  const [expenseArray, setExpenseArray] = useState(expenses)
+  const addingExpenseHandler=(expenseData)=>{
+    setExpenseArray((prevArray)=>[...prevArray,expenseData])
+    // console.log(expenseData)
+    // console.log('in app.js')
+    
+  }
   return (
     <div>
-      <NewExpense/>
-       <Expenses items={expenses}/>
+      <NewExpense onaddingExpense={addingExpenseHandler}/>
+       <Expenses items={expenseArray}/>
        
     </div>
   );
