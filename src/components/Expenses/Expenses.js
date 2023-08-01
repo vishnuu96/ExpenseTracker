@@ -15,7 +15,7 @@ const Expenses=(props)=> {
     <Cardd className='expenses'>
       <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
        {props.items.map((exp)=>{
-      return <ExpenseItem id={exp.id}title={exp.title} amount={exp.amount} date={exp.date} location={exp.location} />
+      return <ExpenseItem key={exp.id}title={exp.title} amount={exp.amount} date={exp.date} location={exp.location} />
     
     })}
     </Cardd>
