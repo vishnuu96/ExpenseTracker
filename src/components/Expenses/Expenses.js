@@ -8,9 +8,11 @@ import ExpenseFilter from './ExpenseFilter';
 const Expenses=(props)=> {
 
   const [filteredYear, setFilteredYear] = useState('2021');
+
   const filterChangeHandler=(selectedYear)=>{
       setFilteredYear(selectedYear)
   }
+  
   const filteredItems=props.items.filter((expense)=>{
     return expense.date.getFullYear().toString()===filteredYear
   })

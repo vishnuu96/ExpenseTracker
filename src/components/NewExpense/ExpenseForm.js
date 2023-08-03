@@ -1,11 +1,11 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import './ExpenseForm.css'
 const ExpenseForm = (props) => {
- 
+
   const [enteredTitle, setEnteredTitle] = useState('')
   const [enteredAmount, setEnteredAmount] = useState('')
   const [enteredDate, setEnteredDate] = useState('')
-const [enteredLocation, setEnteredLocation] = useState('')
+  const [enteredLocation, setEnteredLocation] = useState('')
   // all states in one state
   // const [userInput, setUserInput] = useState({
   //   enteredTitle:'',
@@ -13,7 +13,7 @@ const [enteredLocation, setEnteredLocation] = useState('')
   //   enteredDate:'',
   // });
 
-  const titleEventHandler=(event)=>{
+  const titleEventHandler = (event) => {
     setEnteredTitle(event.target.value)
 
     // setUserInput({
@@ -28,7 +28,7 @@ const [enteredLocation, setEnteredLocation] = useState('')
 
     // })
   }
-  const amountEventHandler=(event)=>{
+  const amountEventHandler = (event) => {
     setEnteredAmount(event.target.value)
 
     // setUserInput({
@@ -39,10 +39,10 @@ const [enteredLocation, setEnteredLocation] = useState('')
     //   return  {...prevState,
     //     enteredAmount:event.target.value,
     //   }
-  
+
     //   })
   }
-  const dateEventHandler=(event)=>{
+  const dateEventHandler = (event) => {
     setEnteredDate(event.target.value)
 
     // setUserInput({
@@ -53,54 +53,84 @@ const [enteredLocation, setEnteredLocation] = useState('')
     //   return  {...prevState,
     //     enteredDate:event.target.value,
     //   }
-  
+
     //   })
   }
-  const locationEventHandler=(event)=>{
-setEnteredLocation(event.target.value)
+  const locationEventHandler = (event) => {
+    setEnteredLocation(event.target.value)
   }
 
-  const addExpense=(event)=>{
+  const addExpense = (event) => {
     event.preventDefault()
-   const newExpense={
-    title:enteredTitle,
-    amount:enteredAmount,
-    date:new Date(enteredDate),
-    location:enteredLocation,
-   }
-   props.onsavingExpense(newExpense)
-   setEnteredTitle('')
-   setEnteredAmount('')
-   setEnteredDate('')
-   setEnteredLocation('')
+    const newExpense = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+      location: enteredLocation,
+    }
+    props.onsavingExpense(newExpense)
+    setEnteredTitle('')
+    setEnteredAmount('')
+    setEnteredDate('')
+    setEnteredLocation('')
+    setDisplayedForm(<form onSubmit={addExpenses}>
+      <div className='alternative'>
+        <button type="submit" >Add Expense</button>
+      </div>
+    </form>)
   }
+
+  const cancelForm = (event) => {
+    event.preventDefault()
+    setDisplayedForm(<form onSubmit={addExpenses}>
+      <div className='alternative'>
+        <button type="submit" >Add Expense</button>
+      </div>
+    </form>)
+  }
+
+  const addExpenses = (event) => {
+    event.preventDefault()
+    setDisplayedForm(<form onSubmit={addExpense}>
+      <div className='expense-new__controls'>
+        <div className='expense-new__control'>
+          <label htmlFor="title">Expense title</label>
+          <input type="text" id="title" value={enteredTitle} onChange={titleEventHandler} />
+        </div>
+        <div className='expense-new__control'>
+          <label htmlFor="amount">Expense amount</label>
+          <input type="number" id="amount" value={enteredAmount} onChange={amountEventHandler} />
+        </div>
+        <div className='expense-new__control'>
+          <label htmlFor="date">date</label>
+          <input type="date" id="date" value={enteredDate} onChange={dateEventHandler} />
+        </div>
+        <div className='expense-new__control'>
+          <label htmlFor="location">location</label>
+          <input type="text" id="date" value={enteredLocation} onChange={locationEventHandler} />
+        </div>
+
+      </div>
+      <div className='expense-handling'>
+        <div className='expense-new__actions'>
+          <button type="submit" >Add Expense</button>
+        </div>
+        <div className='expense-new__actions' onClick={cancelForm}>
+          <button type="submit" >Cancel</button>
+        </div>
+      </div>
+    </form>)
+  }
+
+  const [displayedForm, setDisplayedForm] = useState(<form onSubmit={addExpenses}>
+    <div className='alternative'>
+      <button type="submit" >Add Expense</button>
+    </div>
+  </form>)
 
   return (
     <div>
-      <form onSubmit={addExpense}>
-        <div className='expense-new__controls'>
-          <div className='expense-new__control'>
-            <label htmlFor="title">Expense title</label>
-            <input type="text" id="title" value={enteredTitle} onChange={titleEventHandler}/>
-          </div>
-          <div className='expense-new__control'>
-            <label htmlFor="amount">Expense amount</label>
-            <input type="number" id="amount" value={enteredAmount} onChange={amountEventHandler}/>
-          </div>
-          <div className='expense-new__control'>
-            <label htmlFor="date">date</label>
-            <input type="date" id="date" value={enteredDate} onChange={dateEventHandler} />
-          </div>
-          <div className='expense-new__control'>
-            <label htmlFor="location">location</label>
-            <input type="text" id="date" value={enteredLocation} onChange={locationEventHandler} />
-          </div>
-         
-        </div>
-        <div className='expense-new__actions'>
-            <button type="submit" >Add</button>
-          </div>
-      </form>
+      {displayedForm}
     </div>
   )
 }
