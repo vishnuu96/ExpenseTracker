@@ -3,6 +3,7 @@ import ExpenseItem from './ExpenseItem'
 import './Expenses.css';
 import Cardd from '../UI/Cardd';
 import ExpenseFilter from './ExpenseFilter';
+import ExpensesChart from './ExpensesChart';
 
 
 const Expenses=(props)=> {
@@ -42,7 +43,8 @@ const Expenses=(props)=> {
           return <ExpenseItem key={exp.id}title={exp.title} amount={exp.amount} date={exp.date} location={exp.location} />
          })
       } */}
-
+       
+       <ExpensesChart expenses={filteredItems} />
       {expensesContent}
       
     </Cardd>
